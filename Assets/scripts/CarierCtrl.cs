@@ -6,9 +6,11 @@ public class CarierCtrl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        gameController.Start2();
         rig = this.gameObject.GetComponent<Rigidbody>();
         speed = 0;
         upspeed = 0;
+        gameController.GetNewCarierID(this);
     }
 
     Rigidbody rig;
@@ -24,9 +26,9 @@ public class CarierCtrl : MonoBehaviour {
     float speed;
     float upspeed;
     float angspeed;
-    float upthrust = 0;//0.001f;
-    float mainthrust = 0;//0.01f;
-    float sidethrust = 0;//1;
+    float upthrust = 0.001f;
+    float mainthrust = 0.01f;
+    float sidethrust = 1;
 
     void RecountSpeed()
     {
@@ -72,7 +74,7 @@ public class CarierCtrl : MonoBehaviour {
         moveDirection = new Vector3(speed, upspeed, 0);
         moveDirection = transform.TransformDirection(moveDirection);
 
-        gameController.UpdateMoves(this);
+        //gameController.UpdateMoves(this);
         moveDirection *= Time.fixedDeltaTime;
         transform.position += moveDirection;
     }

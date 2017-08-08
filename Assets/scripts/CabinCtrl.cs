@@ -13,6 +13,7 @@ public class CabinCtrl : MonoBehaviour {
         RightD = this.transform.Find("RightDoor").gameObject.GetComponent<DoorCtrl>();
         LeftD = this.transform.Find("LeftDoor").gameObject.GetComponent<DoorCtrl>();
         OpenFloor();
+        gameController.GetNewLiftID(this);
     }
 
     DoorCtrl RightD;
@@ -165,6 +166,19 @@ public class CabinCtrl : MonoBehaviour {
                 }
             }
         }
+    }
+
+
+    const float xscale = 5;
+    const float yscale = 5;
+    const float zscale = 5;
+
+    public bool IsInThis(Transform t)
+    {
+        Vector3 dist = t.position - this.transform.position;
+        if (Mathf.Abs(dist.x) <= xscale && Mathf.Abs(dist.y) <= yscale && Mathf.Abs(dist.z) <= zscale)
+            return true;
+        return false;
     }
 
     // Update is called once per frame
